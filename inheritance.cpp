@@ -82,6 +82,46 @@ class I2 : public I {};
 // -> when to use private and protected inheritance ?
 //    opposite of is-a relationship, and also to provide encapsulation 
 
+
+// constructors in inheritance
+// -> we know that constructor is invoked implicitly when as object is created
+// -> in inheritance, when we create object of derived class, what will happen ?
+//    both classes constructor will be called
+// -> child class constructor calls the parent class default constructor
+//    first the parent class constructor will execute then the child class constructor will execute
+// -> calling order : from child to parent
+// -> executing order : from parent to child
+// -> if we create our constructor in parent class, then the child class constructor searches for a default constructor to call
+//    but it does not exist as we made our own constructor,
+//    so we have create constructor in child class also and write code to call the parent class constructor passing the necessary arguments
+
+// destructors in inheritance
+// -> child class destructor will execute first then at the ending of destructor,
+// -> parent destructor will be called
+// -> if we don't write code for destructors, compiler will do it in the code block of child destructor 
+
+class J {
+    int a;
+public:
+    J (int A) {
+        a = A;
+    }
+
+    ~J () {}
+};
+
+class K : public J {
+    int b;
+public:
+    K (int x, int y) : J(x) {
+        b = y;
+    }
+
+    ~K () {}
+};
+
+
 int main () {
+    K obj(3, 5);
     return 0;
 }
